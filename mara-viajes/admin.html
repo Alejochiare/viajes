@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Mara Viajes y Turismo</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-mark">M</div>
+      <h2>Mara Viajes y Turismo</h2>
+      <p>Panel de Administración</p>
+      <span class="login-badge">Acceso Restringido</span>
+    </div>
+
+    <form id="login-form">
+      <div class="login-form-group">
+        <label for="login-user">Usuario</label>
+        <div class="login-input-wrap">
+          <span class="login-input-icon">👤</span>
+          <input type="text" id="login-user" placeholder="Ingresá tu usuario" autocomplete="username" required>
+        </div>
+      </div>
+      <div class="login-form-group">
+        <label for="login-pass">Contraseña</label>
+        <div class="login-input-wrap">
+          <span class="login-input-icon">🔒</span>
+          <input type="password" id="login-pass" placeholder="Ingresá tu contraseña" autocomplete="current-password" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-login">Ingresar al panel</button>
+    </form>
+
+    <div class="login-hint">Demo: usuario <strong>admin</strong> / contraseña <strong>1234</strong></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-logo">
+      <div class="nav-logo">
+        <div class="nav-logo-mark">M</div>
+        <span>Mara Viajes</span>
+      </div>
+      <div class="sidebar-logo-sub">Panel de administración</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Principal</div>
+      <button class="sidebar-item" data-view="dashboard">
+        <span class="sidebar-item-icon">📊</span>
+        Dashboard
+      </button>
+
+      <div class="sidebar-section">Gestión</div>
+      <button class="sidebar-item" data-view="viajes">
+        <span class="sidebar-item-icon">✈️</span>
+        Ver Viajes
+      </button>
+      <button class="sidebar-item" data-view="nuevo">
+        <span class="sidebar-item-icon">➕</span>
+        Nuevo Viaje
+      </button>
+
+      <div class="sidebar-section">Sitio</div>
+      <button class="sidebar-item" onclick="window.open('index.html','_blank')">
+        <span class="sidebar-item-icon">🌐</span>
+        Ver sitio web
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button id="btn-logout">🚪 Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1 id="admin-topbar-title">Dashboard</h1>
+      <div class="topbar-actions">
+        <span class="topbar-date" id="topbar-date"></span>
+        <button class="btn-save" onclick="navigateTo('nuevo')" style="padding:8px 20px; font-size:.85rem;">+ Nuevo viaje</button>
+      </div>
+    </div>
+
+    <!-- ── DASHBOARD ── -->
+    <div class="admin-view" id="view-dashboard">
+      <!-- Stats -->
+      <div class="dash-stats">
+        <div class="stat-card">
+          <div class="stat-card-icon">✈️</div>
+          <div class="stat-card-label">Total Viajes</div>
+          <div class="stat-card-value" id="stat-total">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🔥</div>
+          <div class="stat-card-label">Ofertas Activas</div>
+          <div class="stat-card-value" id="stat-ofertas">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">💰</div>
+          <div class="stat-card-label">Precio Promedio</div>
+          <div class="stat-card-value" id="stat-promedio">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🎯</div>
+          <div class="stat-card-label">Precio Más Bajo</div>
+          <div class="stat-card-value" id="stat-minimo">–</div>
+        </div>
+      </div>
+
+      <!-- Charts + Recientes -->
+      <div class="dash-grid">
+        <div class="dash-panel">
+          <h3>Viajes por destino</h3>
+          <div id="chart-destinos"><!-- Dinámico --></div>
+        </div>
+        <div class="dash-panel">
+          <h3>Últimos agregados</h3>
+          <div id="viajes-recientes"><!-- Dinámico --></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VIAJES ── -->
+    <div class="admin-view" id="view-viajes">
+      <div class="admin-viajes-header">
+        <h2>Gestión de Viajes</h2>
+        <div class="admin-search-wrap">
+          <input type="text" id="admin-busqueda" placeholder="Buscar viaje…">
+        </div>
+      </div>
+      <div id="admin-viajes-grid"><!-- Dinámico --></div>
+    </div>
+
+    <!-- ── NUEVO / EDITAR ── -->
+    <div class="admin-view" id="view-nuevo">
+      <div class="form-header">
+        <h2 id="form-title">Nuevo Viaje</h2>
+        <button class="btn-cancelar" onclick="navigateTo('viajes')">← Volver a la lista</button>
+      </div>
+
+      <div class="form-card">
+        <form id="viaje-form">
+          <input type="hidden" id="form-id">
+
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Nombre del viaje <span>*</span></label>
+              <input type="text" id="form-nombre" placeholder="Ej: Punta Cana – Todo Incluido" required>
+            </div>
+
+            <div class="form-group">
+              <label>Destino <span>*</span></label>
+              <input type="text" id="form-destino" placeholder="Ej: República Dominicana" required>
+            </div>
+
+            <div class="form-group">
+              <label>Precio (USD) <span>*</span></label>
+              <input type="number" id="form-precio" placeholder="1850" min="0" step="10" required>
+            </div>
+
+            <div class="form-group">
+              <label>Duración</label>
+              <input type="text" id="form-duracion" placeholder="Ej: 7 noches">
+            </div>
+
+            <div class="form-group">
+              <label>Salidas</label>
+              <input type="text" id="form-salidas" placeholder="Ej: Todos los viernes">
+            </div>
+
+            <div class="form-group full">
+              <label>Descripción</label>
+              <textarea id="form-descripcion" placeholder="Describí el destino, qué hace especial este viaje…"></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label>URL de imagen</label>
+              <input type="url" id="form-imagen" placeholder="https://images.unsplash.com/…">
+              <div class="preview-imagen-wrap">
+                <img id="preview-imagen" alt="Preview">
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label>¿Qué incluye? (una línea por ítem)</label>
+              <textarea id="form-incluye" placeholder="Vuelo ida y vuelta&#10;Hotel 5★ todo incluido&#10;Traslados&#10;Seguro de viaje"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Estado</label>
+              <div class="form-check-group">
+                <input type="checkbox" id="form-oferta">
+                <label for="form-oferta">🔥 Marcar como oferta</label>
+              </div>
+              <div class="form-check-group">
+                <input type="checkbox" id="form-destacado">
+                <label for="form-destacado">⭐ Destacado en home</label>
+              </div>
+            </div>
+
+            <div class="form-group" id="oferta-fields">
+              <label>Descuento (%)</label>
+              <input type="number" id="form-descuento" placeholder="Ej: 20" min="0" max="99" value="0">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-save">💾 Guardar viaje</button>
+            <button type="button" class="btn-cancelar" onclick="navigateTo('viajes')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal Confirmar Eliminar -->
+<div id="modal-confirmar">
+  <div class="modal-box">
+    <div class="modal-icon">⚠️</div>
+    <h3>¿Confirmar eliminación?</h3>
+    <p id="modal-msg"></p>
+    <div class="modal-btns">
+      <button id="btn-confirmar-si">Sí, eliminar</button>
+      <button id="btn-confirmar-no">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/admin.js"></script>
+
+<script>
+  // Set fecha en topbar
+  document.getElementById('topbar-date').textContent = new Date().toLocaleDateString('es-AR', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+</script>
+</body>
+</html>

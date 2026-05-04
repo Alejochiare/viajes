@@ -1,0 +1,329 @@
+/* ================================================================
+   MARA VIAJES Y TURISMO — viajes.css
+   Página de listado de viajes con filtros
+   ================================================================ */
+
+/* ── Page Header ── */
+.page-hero {
+  padding: 140px 5vw 60px;
+  background: linear-gradient(135deg, var(--negro) 0%, var(--verde-oscuro) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=50') center/cover;
+  opacity: 0.12;
+}
+.page-hero-content { position: relative; z-index: 1; }
+.page-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.6);
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+.page-breadcrumb a { color: var(--dorado); }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+.page-hero p { color: rgba(255,255,255,.7); font-size: 1rem; }
+
+/* ── Layout Viajes ── */
+.viajes-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  padding: 48px 5vw;
+  align-items: start;
+}
+
+/* ── Sidebar Filtros ── */
+.filtros-sidebar {
+  position: sticky;
+  top: 88px;
+  background: var(--blanco);
+  border: 1px solid var(--gris-40);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.filtros-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gris-20);
+}
+.filtros-header h3 { font-size: 1rem; font-weight: 600; }
+#btn-reset-filtros {
+  background: none;
+  color: var(--verde);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background var(--transition);
+}
+#btn-reset-filtros:hover { background: var(--verde-bg); }
+
+.filtro-grupo {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gris-20);
+}
+.filtro-grupo:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.filtro-grupo label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gris-80);
+  margin-bottom: 12px;
+}
+
+/* Busqueda */
+.filtro-search-wrap { position: relative; }
+.filtro-search-wrap input {
+  width: 100%;
+  padding: 10px 16px 10px 36px;
+  border: 1.5px solid var(--gris-40);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.filtro-search-wrap input:focus { border-color: var(--verde); }
+.filtro-search-wrap::before {
+  content: '🔍';
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 0.8rem;
+}
+
+/* Select */
+.filtro-grupo select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--gris-40);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--negro);
+  background: var(--blanco);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234b5563' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color var(--transition);
+}
+.filtro-grupo select:focus { border-color: var(--verde); }
+
+/* Slider */
+.filtro-grupo input[type="range"] {
+  width: 100%;
+  accent-color: var(--verde);
+  cursor: pointer;
+}
+#precio-label {
+  display: block;
+  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--verde);
+  margin-top: 8px;
+}
+
+/* Checkbox oferta */
+.filtro-check {
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+}
+.filtro-check input[type="checkbox"] { accent-color: var(--verde); width: 16px; height: 16px; cursor: pointer; }
+.filtro-check span { font-size: 0.9rem; color: var(--gris-80); }
+
+/* ── Área de Resultados ── */
+.resultados-area {}
+.resultados-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap; gap: 12px;
+}
+#resultado-count {
+  font-size: 0.88rem;
+  color: var(--gris-80);
+  font-weight: 500;
+}
+.orden-select {
+  padding: 8px 14px;
+  border: 1.5px solid var(--gris-40);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--negro);
+  background: var(--blanco);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234b5563' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  transition: border-color var(--transition);
+}
+.orden-select:focus { border-color: var(--verde); }
+
+/* ── Cards Listado ── */
+#viajes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-listado {
+  display: grid;
+  grid-template-columns: 260px 1fr auto;
+  gap: 0;
+  background: var(--blanco);
+  border: 1px solid var(--gris-40);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.card-listado:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
+
+.card-listado-img {
+  position: relative;
+  overflow: hidden;
+}
+.card-listado-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+.card-listado:hover .card-listado-img img { transform: scale(1.05); }
+
+.badge-oferta-list {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.card-listado-body {
+  padding: 24px;
+  display: flex; flex-direction: column;
+}
+.card-listado-top {
+  display: flex; gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.tag-destino {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--verde);
+  background: var(--verde-bg);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.tag-duracion {
+  font-size: 0.75rem;
+  color: var(--gris-80);
+  background: var(--gris-10);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.card-listado-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--negro);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.card-listado-body p {
+  font-size: 0.85rem;
+  color: var(--gris-80);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.card-listado-incluye {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.card-listado-incluye span {
+  font-size: 0.75rem;
+  color: var(--gris-80);
+  background: var(--gris-10);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.card-listado-precio {
+  padding: 24px;
+  border-left: 1px solid var(--gris-20);
+  display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+  gap: 4px;
+  min-width: 200px;
+  text-align: right;
+}
+.salidas-label {
+  font-size: 0.75rem;
+  color: var(--gris-60);
+  margin-bottom: 8px;
+}
+.precio-tachado { font-size: 0.82rem; color: var(--gris-60); text-decoration: line-through; }
+.precio-grande {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--verde);
+  line-height: 1;
+}
+.card-listado-precio small { font-size: 0.72rem; color: var(--gris-60); }
+.btn-ver-detalle {
+  margin-top: 16px;
+  background: var(--verde);
+  color: var(--blanco);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+}
+.btn-ver-detalle:hover { background: var(--verde-claro); transform: translateY(-1px); }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .viajes-layout { grid-template-columns: 1fr; }
+  .filtros-sidebar { position: static; }
+  .card-listado { grid-template-columns: 200px 1fr; }
+  .card-listado-precio {
+    grid-column: 1/-1;
+    border-left: none;
+    border-top: 1px solid var(--gris-20);
+    flex-direction: row; align-items: center;
+    padding: 16px 24px;
+    text-align: left;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 640px) {
+  .card-listado { grid-template-columns: 1fr; }
+  .card-listado-img { height: 200px; }
+  .card-listado-precio {
+    flex-direction: column; align-items: flex-start;
+    text-align: left;
+  }
+}

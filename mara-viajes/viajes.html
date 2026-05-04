@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinos y Paquetes – Mara Viajes y Turismo</title>
+  <meta name="description" content="Todos nuestros paquetes de viaje. Filtrá por destino, precio y ofertas. Mara Viajes y Turismo, San Francisco Córdoba.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/viajes.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo">Mara <span>Viajes</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar" class="scrolled">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-logo-text">Mara Viajes</span>
+  </a>
+  <ul id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="viajes.html">Destinos</a></li>
+    <li><a href="viajes.html?oferta=true">Ofertas</a></li>
+    <li><a href="https://wa.me/5493564688545" target="_blank" rel="noopener">Contacto</a></li>
+    <li><a href="https://wa.me/5493564688545" target="_blank" rel="noopener" class="nav-cta">✈ Reservar</a></li>
+  </ul>
+  <button id="navToggle" aria-label="Menú">☰</button>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-breadcrumb">
+      <a href="index.html">Inicio</a> › Destinos
+    </div>
+    <h1>Todos nuestros destinos</h1>
+    <p>Encontrá el viaje perfecto con filtros inteligentes</p>
+  </div>
+</div>
+
+<!-- Layout principal -->
+<div class="viajes-layout">
+
+  <!-- Sidebar Filtros -->
+  <aside class="filtros-sidebar">
+    <div class="filtros-header">
+      <h3>Filtros</h3>
+      <button id="btn-reset-filtros">Limpiar todo</button>
+    </div>
+
+    <!-- Búsqueda -->
+    <div class="filtro-grupo">
+      <label>Buscar</label>
+      <div class="filtro-search-wrap">
+        <input type="text" id="filtro-busqueda" placeholder="Destino o nombre…">
+      </div>
+    </div>
+
+    <!-- Destino -->
+    <div class="filtro-grupo">
+      <label>Destino</label>
+      <select id="filtro-destino">
+        <option value="">Todos los destinos</option>
+      </select>
+    </div>
+
+    <!-- Precio -->
+    <div class="filtro-grupo">
+      <label>Precio máximo</label>
+      <input type="range" id="filtro-precio" min="0" max="5000" step="50">
+      <span id="precio-label">Hasta USD 5.000</span>
+    </div>
+
+    <!-- Solo ofertas -->
+    <div class="filtro-grupo">
+      <label>Tipo</label>
+      <label class="filtro-check">
+        <input type="checkbox" id="filtro-oferta">
+        <span>🔥 Solo ofertas</span>
+      </label>
+    </div>
+  </aside>
+
+  <!-- Área de resultados -->
+  <main class="resultados-area">
+    <div class="resultados-header">
+      <span id="resultado-count">Cargando…</span>
+      <select id="filtro-orden" class="orden-select">
+        <option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option>
+        <option value="nombre">Nombre A–Z</option>
+      </select>
+    </div>
+
+    <div id="viajes-grid">
+      <!-- Cards dinámicas -->
+    </div>
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">M</div>
+        <span>Mara Viajes y Turismo</span>
+      </a>
+      <p>Te ayudamos a cumplir tu sueño de viajar. E.V.T. Leg. 13.989 – Disp. 367</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/maraviajesyturismo" target="_blank" rel="noopener">📸</a>
+        <a href="https://wa.me/5493564688545" target="_blank" rel="noopener">💬</a>
+        <a href="mailto:viajes@maraviajes.tur.ar">✉️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="viajes.html">Todos los destinos</a></li>
+        <li><a href="viajes.html?oferta=true">Ofertas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/5493564688545">WhatsApp: 3564-688545</a></li>
+        <li><a href="tel:035640498375">(03564) 498375</a></li>
+        <li><a href="mailto:viajes@maraviajes.tur.ar">viajes@maraviajes.tur.ar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horarios</h4>
+      <ul>
+        <li><a href="#">Lun–Vie: 9 a 13 hs</a></li>
+        <li><a href="#">Lun–Vie: 17 a 20 hs</a></li>
+        <li><a href="#">Dean Funes 1725, San Francisco</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Mara Viajes y Turismo. Todos los derechos reservados.</p>
+    <a href="admin.html">Admin</a>
+  </div>
+</footer>
+
+<script src="js/storage.js"></script>
+<script src="js/viajes.js"></script>
+</body>
+</html>

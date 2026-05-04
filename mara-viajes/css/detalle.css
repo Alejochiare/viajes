@@ -1,0 +1,239 @@
+/* ================================================================
+   MARA VIAJES Y TURISMO — detalle.css
+   ================================================================ */
+
+.detalle-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+  background: var(--negro);
+}
+.detalle-hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .75;
+  transition: transform 0.8s ease;
+}
+.detalle-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
+}
+.detalle-hero-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 40px 5vw;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.detalle-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.65);
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+.detalle-breadcrumb a { color: var(--dorado); }
+.detalle-hero-text .tag-destino-hero {
+  display: inline-block;
+  background: var(--dorado);
+  color: var(--negro);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 14px;
+  border-radius: 99px;
+  margin-bottom: 12px;
+}
+.detalle-hero-text h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--blanco);
+  line-height: 1.2;
+  max-width: 700px;
+}
+.detalle-badge-oferta {
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+/* ── Layout Detalle ── */
+.detalle-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  padding: 48px 5vw;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ── Contenido Principal ── */
+.detalle-main {}
+
+.detalle-meta {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gris-20);
+}
+.meta-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.88rem;
+  color: var(--gris-80);
+}
+.meta-item strong { color: var(--negro); }
+
+.detalle-section { margin-bottom: 32px; }
+.detalle-section h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--negro);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--verde);
+  display: inline-block;
+}
+.detalle-desc {
+  color: var(--gris-80);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.incluye-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.incluye-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: var(--verde-bg);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  color: var(--verde-oscuro);
+  font-weight: 500;
+}
+.incluye-item::before { content: '✓'; font-weight: 700; color: var(--verde); }
+
+/* ── Sidebar Precio ── */
+.detalle-sidebar {}
+.precio-card {
+  background: var(--blanco);
+  border: 1.5px solid var(--gris-40);
+  border-radius: var(--radius);
+  padding: 28px;
+  position: sticky;
+  top: 88px;
+  box-shadow: var(--shadow-md);
+}
+.precio-card-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gris-60);
+  margin-bottom: 4px;
+}
+.precio-card-original {
+  font-size: 1rem;
+  color: var(--gris-60);
+  text-decoration: line-through;
+}
+.precio-card-final {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--verde);
+  font-family: var(--font-display);
+  line-height: 1;
+  margin: 4px 0;
+}
+.precio-card-pp { font-size: 0.8rem; color: var(--gris-60); margin-bottom: 20px; }
+.precio-ahorro {
+  background: rgba(229,62,62,.08);
+  color: var(--rojo);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.btn-reservar-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%;
+  background: #25D366;
+  color: var(--blanco);
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+.btn-reservar-whatsapp:hover { background: #128C7E; transform: translateY(-1px); }
+
+.btn-consultar {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  background: var(--gris-10);
+  color: var(--gris-80);
+  border: 1.5px solid var(--gris-40);
+  padding: 13px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+  text-decoration: none;
+}
+.btn-consultar:hover { background: var(--gris-20); }
+
+.precio-card-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gris-20);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.info-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem;
+}
+.info-row span:first-child { color: var(--gris-80); }
+.info-row span:last-child { font-weight: 600; color: var(--negro); }
+
+.precio-garantia {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: var(--gris-60);
+  text-align: center;
+  justify-content: center;
+}
+
+/* ── Más viajes ── */
+.mas-viajes { padding: 60px 5vw; background: var(--gris-10); }
+.mas-viajes .section-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--negro); margin-bottom: 32px; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .detalle-layout { grid-template-columns: 1fr; }
+  .precio-card { position: static; }
+}
+@media (max-width: 640px) {
+  .detalle-hero { height: 50vh; }
+  .incluye-grid { grid-template-columns: 1fr; }
+  .detalle-hero-content { flex-direction: column; align-items: flex-start; }
+}
