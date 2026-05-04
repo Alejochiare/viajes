@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — MARA Viajes y Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOGIN
+═══════════════════════════════════════════ -->
+<div class="login-wrap" id="login-wrap">
+  <div class="login-noise"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="var(--lime)" stroke-width="2"/>
+        <path d="M14 32 Q24 10 34 32" stroke="var(--lime)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="32" r="4" fill="var(--lime)"/>
+      </svg>
+      <div>
+        <strong>MARA Admin</strong>
+        <span>Panel de gestión</span>
+      </div>
+    </div>
+    <form id="login-form" novalidate>
+      <div class="lf-group">
+        <label>Usuario</label>
+        <input type="text" id="l-user" placeholder="admin" autocomplete="username"/>
+      </div>
+      <div class="lf-group">
+        <label>Contraseña</label>
+        <input type="password" id="l-pass" placeholder="••••••" autocomplete="current-password"/>
+      </div>
+      <div class="login-err" id="login-err"></div>
+      <button type="submit" class="btn-login">Ingresar →</button>
+      <p class="login-hint">admin / 1234</p>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PANEL PRINCIPAL
+═══════════════════════════════════════════ -->
+<div class="admin-shell" id="admin-shell" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-header">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="var(--lime)" stroke-width="2"/>
+        <path d="M14 32 Q24 10 34 32" stroke="var(--lime)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="32" r="3" fill="var(--lime)"/>
+      </svg>
+      <span>MARA <em>admin</em></span>
+    </div>
+
+    <nav class="sb-nav">
+      <button class="sbn active" data-sec="dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button class="sbn" data-sec="viajes">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.87a16 16 0 0 0 6.29 6.29l1.17-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Viajes
+      </button>
+      <button class="sbn" data-sec="ofertas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        Ofertas
+      </button>
+      <button class="sbn" data-sec="nuevo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Nuevo viaje
+      </button>
+    </nav>
+
+    <div class="sb-footer">
+      <a href="index.html" class="sb-site-link">← Ver sitio</a>
+      <button class="sb-logout" id="btn-logout">Salir</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <!-- Topbar mobile -->
+    <div class="admin-topbar">
+      <button class="atb-menu" id="menu-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <span id="atb-title">Dashboard</span>
+      <div class="atb-user">
+        <div class="atb-av">A</div>
+      </div>
+    </div>
+
+    <!-- ── DASHBOARD ── -->
+    <section class="asec" id="sec-dashboard">
+      <div class="asec-head">
+        <h2>DASHBOARD</h2>
+        <p>Vista general de Mara Viajes y Turismo</p>
+      </div>
+      <div class="dash-stats" id="dash-stats"></div>
+      <div class="dash-recent">
+        <div class="dr-header">
+          <h3>Últimos viajes cargados</h3>
+          <button class="btn-sm-ghost" data-goto="viajes">Ver todos →</button>
+        </div>
+        <div class="recent-cards" id="recent-cards"></div>
+      </div>
+    </section>
+
+    <!-- ── VIAJES ── -->
+    <section class="asec" id="sec-viajes" style="display:none">
+      <div class="asec-head">
+        <h2>VIAJES</h2>
+        <p>Gestión completa del catálogo</p>
+      </div>
+      <div class="viajes-toolbar">
+        <input type="text" id="vt-search" placeholder="Buscar..." class="vt-input"/>
+        <select id="vt-filter" class="vt-input">
+          <option value="all">Todos</option>
+          <option value="caribe">Caribe</option>
+          <option value="europa">Europa</option>
+          <option value="america">América</option>
+          <option value="asia">Asia</option>
+          <option value="crucero">Cruceros</option>
+        </select>
+        <button class="btn-new" data-goto="nuevo">+ Nuevo viaje</button>
+      </div>
+      <div class="viajes-list" id="viajes-list"></div>
+    </section>
+
+    <!-- ── OFERTAS ── -->
+    <section class="asec" id="sec-ofertas" style="display:none">
+      <div class="asec-head">
+        <h2>OFERTAS</h2>
+        <p>Activá o desactivá ofertas y editá descuentos</p>
+      </div>
+      <div class="ofertas-grid" id="ofertas-grid"></div>
+    </section>
+
+    <!-- ── NUEVO / EDITAR ── -->
+    <section class="asec" id="sec-nuevo" style="display:none">
+      <div class="asec-head">
+        <h2 id="form-title">NUEVO VIAJE</h2>
+        <p id="form-subtitle">Cargá los datos del destino</p>
+      </div>
+      <div class="form-card">
+        <form id="trip-form" novalidate>
+          <input type="hidden" id="f-id"/>
+          <div class="fg-grid">
+            <div class="fg">
+              <label>Nombre del viaje *</label>
+              <input type="text" id="f-name" placeholder="Ej: Punta Cana todo incluido" required/>
+              <span class="ferr" id="e-name"></span>
+            </div>
+            <div class="fg">
+              <label>Destino / Región *</label>
+              <select id="f-dest" required>
+                <option value="">Seleccioná...</option>
+                <option value="caribe">Caribe</option>
+                <option value="europa">Europa</option>
+                <option value="america">América</option>
+                <option value="asia">Asia</option>
+                <option value="crucero">Crucero</option>
+              </select>
+              <span class="ferr" id="e-dest"></span>
+            </div>
+            <div class="fg">
+              <label>Precio (USD) *</label>
+              <input type="number" id="f-price" placeholder="1200" min="0" required/>
+              <span class="ferr" id="e-price"></span>
+            </div>
+            <div class="fg">
+              <label>URL de imagen *</label>
+              <input type="url" id="f-img" placeholder="https://..." required/>
+              <span class="ferr" id="e-img"></span>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Descripción *</label>
+            <textarea id="f-desc" rows="3" placeholder="Describí la experiencia..." required></textarea>
+            <span class="ferr" id="e-desc"></span>
+          </div>
+          <div class="fg-row">
+            <label class="chk-label">
+              <input type="checkbox" id="f-offer"/>
+              <span class="chk-custom"></span>
+              ¿Es oferta especial?
+            </label>
+            <div class="fg fg-inline" id="disc-fg" style="display:none">
+              <label>Descuento (%)</label>
+              <input type="number" id="f-disc" placeholder="20" min="1" max="99"/>
+            </div>
+          </div>
+          <!-- Preview imagen -->
+          <div class="img-prev-wrap" id="img-prev-wrap" style="display:none">
+            <img id="img-prev" src="" alt="preview"/>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-save" id="btn-save">Guardar viaje →</button>
+            <button type="button" class="btn-cancel" id="btn-cancel">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Confirm delete -->
+<div class="confirm-overlay" id="confirm-overlay" style="display:none">
+  <div class="confirm-box">
+    <h3>¿Eliminar este viaje?</h3>
+    <p>No se puede deshacer.</p>
+    <div class="confirm-actions">
+      <button class="btn-confirm-del" id="btn-confirm-del">Sí, eliminar</button>
+      <button class="btn-confirm-cancel" id="btn-confirm-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="admin-toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
